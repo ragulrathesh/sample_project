@@ -1,95 +1,91 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client'
+import  data from './data.json'
+import { useState } from "react";
 
-export default function Home() {
+const Home = () => {
+
+  const [d,newdata] = useState([]);
+
+  const isUserLoggedIn = true;
+
+  const userName = 'Persis';
+
+  //console.log(data.info)  //displaying the contents of the json file
+  //console.table(data.info) //displaying the contents of the json file in a table
+
+  const information = data.info
+  //console.table(information) //displays a table of informaion from the definition
+
+  /*const getUsers = () => { // use of fetch and .then
+    const APIUrl = 'https://jsonplaceholder.typicode.com/albums/1'
+
+    const result = fetch(APIUrl)
+    .then(res => res.json())
+    .then(json => console.log(json))
+
+    return result
+
+  
+  };*/
+
+  const getUsers = async () => { // use of async await
+    const APIUrl = 'https://jsonplaceholder.typicode.com/albums'
+
+    const url = await fetch(APIUrl)
+    const result = await url.json()
+
+    const newdata1 = {
+      userId : 11, 
+      id : 101,
+      mentor : 'Persis'
+    }
+    result.push(newdata1) //use of push operator
+
+    const newdata2 = {
+      userId : 12, 
+      id : 102,
+      mentor : 'tina'
+    }
+    
+
+    const anotherdata = [...result, newdata2] //use of spread operator
+    newdata(anotherdata)  //updated state
+
+    localStorage.setItem('album', JSON.stringify(anotherdata)) // adding items to local storage
+    //console.table(JSON.parse(localStorage.getItem('album'))) //fetching items from local storage
+  
+  };
+
+  
+
+
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+    <div>
+      <center><strong>{isUserLoggedIn?<h1>Welcome {userName}</h1>:<p>PLEASE LOG IN !</p>}</strong></center>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
+       <center><h2>The following students have got  full precent in practical</h2>
+        </center>       
+      
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+      {
+        information.map((info, index) =>{
+          return(
+            <center key= {index}>
+              
+              <h3> Name:{info.name} </h3>
+              <h3> Department{info.department}</h3>
+              <h3> Roll No{info.exam_roll}</h3>
+            </center>
+           
+          )
+        })
+      }
+      <center><button onClick={()=>{getUsers()}}>ok</button></center>
+    </div>
   );
-}
+};
+
+export default Home;

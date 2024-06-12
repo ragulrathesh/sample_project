@@ -1,0 +1,26 @@
+{
+    "info":  [
+        {
+            "name":"Ragul Rathesh",
+            "department":"Bsc ComputerScience",
+            "exam_roll":599
+        },
+        
+        {
+            "name":"Harjith Roy",
+            "department":"BCA",
+            "exam_roll":699
+        },
+        
+        {
+            "name":"Mohamad Anus",
+            "department":"BSc Physics",
+            "exam_roll":599
+        },
+        {
+            "name":"Praveen",
+            "department":"BSc IT",
+            "exam_roll":5998
+        }
+    ]
+}

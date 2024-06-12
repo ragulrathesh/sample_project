@@ -1,0 +1,38 @@
+{
+    "info":[
+        {
+            "name":"ragul",
+            "age":19,
+            "course":"Bsc computer science"
+        },
+        {
+           "name":"rathesh",
+            "age":19,
+            "course":"Bca"
+        },
+        {
+            "name":"ranith",
+            "age":19,
+            "course":"Bsc statistics"
+        }
+
+    ],
+  
+      "mentor_info":[
+       {
+        "name":"persis",
+        "department":"Bsc  cs",
+        "Group":"A"
+       },
+       {
+        "name":"jenny",
+        "department":"Bsc  cs",
+        "Group":"B"
+       },
+       {
+        "name":"Tina",
+        "department":"Bsc  cs",
+        "Group":"B"
+       }
+    ]
+}
